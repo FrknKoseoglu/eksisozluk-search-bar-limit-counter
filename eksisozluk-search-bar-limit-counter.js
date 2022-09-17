@@ -1,12 +1,13 @@
 // ==UserScript==
 // @name         Ekşi Sözlük Search Bar Limit Counter
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  try to take over the world!
 // @author       FrknKoseoglu
 // @match        https://eksisozluk.com/
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=eksisozluk.com
 // @grant        none
+// @license MIT
 // ==/UserScript==
 
 // @Github https://github.com/FrknKoseoglu/
