@@ -2,43 +2,48 @@
 // @name         Ekşi Sözlük Search Bar Limit Counter
 // @namespace    http://tampermonkey.net/
 // @version      0.1
-// @description  Daha iyi bir Ekşi Sözlük Deneyimi!
+// @description  try to take over the world!
 // @author       FrknKoseoglu
 // @match        https://eksisozluk.com/
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=eksisozluk.com
 // @grant        none
-// @license      MIT
 // ==/UserScript==
- 
+
 // @Github https://github.com/FrknKoseoglu/
- 
+
 (function() {
     'use strict';
     const searchInput = document.querySelector('#search-textbox')
     const searchForm = document.querySelector('#search-form')
     const countsLetter = document.createElement("div");
+    const rgbRatio = 10.2;
+    let red = 1;
+    let green = 255;
     countsLetter.setAttribute("id", "count-letter");
     searchForm.prepend(countsLetter)
     countsLetter.style.cssText = "position:absolute;right:15%;font-weight:bold;"
- 
+
 const count = document.getElementById('count-letter')
 searchInput.onkeyup = (e) => {
-  count.innerHTML = (50 - e.target.value.length);
-    if(e.target.value.length > 50) {
-        countsLetter.style.cssText += "color:red;"
+   let charCount = e.target.value.length;
+  count.innerHTML = (50 - charCount);
+
+    if(charCount < 25) {
+        red = charCount * rgbRatio;
+        countsLetter.style.cssText += `color:rgb( ${red} 255 0);`
     }
-    else if(e.target.value.length == 50 ){
-    countsLetter.style.cssText += "color:green;"
+    else {
+    green = (((charCount * rgbRatio) - 255) - 255) * -1;
+        countsLetter.style.cssText += `color:rgb( 255 ${green} 0);`
     }
-    else if(e.target.value.length > 40){
-    countsLetter.style.cssText += "color:orange;"
-    }
-    else if(e.target.value.length > 35){
-    countsLetter.style.cssText += "color:yellow;"
+
+    if(charCount > 50){
+        searchInput.style.cssText +='border: 2px solid red !important;';
     }
     else{
-    countsLetter.style.cssText += "color:unset;"
+    searchInput.style.cssText = '';
     }
+
 };
- 
+
 })();
